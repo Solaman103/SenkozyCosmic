@@ -1,0 +1,404 @@
+/**
+ * @name Senkozy Cosmic Theme
+ * @author Senkozy
+ * @version 3.0
+ * @description Full-featured nebula UI framework: identity loader, galaxy DM deck, hover holograms, glow engine, particle effects, animated splash branding, toggle system + cosmic aesthetics
+ * @source https://github.com/Solaman103/SenkozyCosmic
+ * @website https://linktr.ee/Senkozy
+ * @invite https://discord.gg/n8bBfmnqxP
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap');
+
+/* --------------------------------------------------
+    MASTER VARIABLE BANK
+---------------------------------------------------*/
+:root {
+    /* Main Palette */
+    --sen-bg: #0A0A0F;
+    --sen-bg2: #13131A;
+    --sen-bg3: #1C1C28;
+
+    --sen-accent-primary: #00ff00;
+    --sen-accent-secondary: #8c00ff;
+
+    
+    /* Fonts */
+    --font-primary: 'Figtree', 'gg sans';
+    --font-display: 'Figtree', 'gg sans';
+    --font-code: 'Figtree', monospace;
+
+    /* Assets */
+    --petal-img: url("Put you url here for your picture");
+    --mist-img: url("Put you url here for your picture");
+    --nebula-img: url("Put you url here for your picture");
+
+    /* DM galaxy */
+    --dm-bg: url("Put you url here for your picture");
+
+    /* Branding / home icon */
+    --sen-home-icon: url("Put you url here for your picture");
+    /* Watermark filters */
+    --sen-water-invert: 0%;
+    --sen-water-sepia: 50%;
+    --sen-water-sat: 1500%;
+    --sen-water-hue: 280deg;
+    --sen-water-bright: 80%;
+    --sen-water-contrast: 200%;
+
+    /* UI Toggles */
+    --toggle-glow-effects: 1;
+    --toggle-motion-effects: 1;
+    --toggle-falling-petals: 1;
+    --toggle-watermark: 1;
+    --toggle-custom-home-button: 1;
+}
+
+/* --------------------------------------------------
+   BASE UI
+---------------------------------------------------*/
+.theme-dark {
+    --background-primary: var(--sen-bg);
+    --background-secondary: var(--sen-bg2);
+    --background-tertiary: var(--sen-bg3);
+    --background-secondary-alt: var(--sen-bg2);
+}
+
+/* Buttons */
+.lookFilled-1H2Jvj, button, .button-38aScr {
+    background: linear-gradient(45deg, var(--sen-accent-primary), var(--sen-accent-secondary)) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 0 12px rgba(179, 0, 255, 0.35);
+    transition: 200ms ease;
+}
+.lookFilled-1H2Jvj:hover { filter: brightness(1.2); }
+
+/* --------------------------------------------------
+   UI BREATHING EFFECT
+---------------------------------------------------*/
+@keyframes senBreath {
+    0%,100% { box-shadow: 0 0 12px rgba(115, 233, 255, 0.25); }
+    50%     { box-shadow: 0 0 18px rgba(179, 0, 255, 0.35); }
+}
+.container-3BaE_j, .sidebar-2K8pFh, .chat-3bRxxu {
+    animation: senBreath 6s ease-in-out infinite;
+}
+
+/* --------------------------------------------------
+   BACKGROUND NEBULA + MIST
+---------------------------------------------------*/
+html::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--nebula-img);
+    background-size: 150%;
+    opacity: 0.18;
+    animation: nebulaDrift 48s linear infinite;
+    z-index: 0;
+}
+@keyframes nebulaDrift {
+    0%   { transform: translateX(-5%) translateY(-5%); opacity: 0.25; }
+    50%  { transform: translateX(8%)  translateY(4%); opacity: 0.50; }
+    100% { transform: translateX(-5%) translateY(-5%); opacity: 0.100; }
+}
+html::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--mist-img);
+    background-size: cover;
+    opacity: 0.30;
+    animation: senMist 6s ease-in-out infinite;
+    z-index: 1;
+}
+@keyframes senMist {
+    0%,100% {opacity: 0.100;}
+    50%     {opacity: 0.50;}
+}
+
+/* --------------------------------------------------
+   GLASS UI PANELS
+---------------------------------------------------*/
+.chat-3bRxxu, .sidebar-2K8pFh, .container-3BaE_j {
+    backdrop-filter: blur(12px) saturate(120%);
+    background: rgba(20,20,30,0.45) !important;
+    border: 1px solid rgba(115,233,255,0.15);
+    border-radius: 12px;
+}
+.chat-3bRxxu:hover,
+.sidebar-2K8pFh:hover,
+.container-3BaE_j:hover {
+    border-color: rgba(115,233,255,0.4) !important;
+    box-shadow: 0 0 12px rgba(115,233,255,0.3);
+}
+
+/* --------------------------------------------------
+   HOVERS
+---------------------------------------------------*/
+.message-2qnXI6:hover,
+.listItemWrapper-1F4PU1:hover,
+.container-3wLKDe:hover {
+    outline: 1px solid var(--sen-accent-secondary);
+    box-shadow: 0 0 10px rgba(115, 233, 255, 0.4);
+    transition: box-shadow 0.4s ease, border 0.4s ease;
+}
+
+/* --------------------------------------------------
+   AVATAR + PROFILE HOLOGRAM
+---------------------------------------------------*/
+.avatar-3uk_u9 img,
+.wrapper-3t9DeA img,
+.avatar-VxgULZ img {
+    box-shadow: 0 0 14px rgba(179, 0, 255, 0.4) !important;
+    transition: 200ms ease;
+}
+.avatar-3uk_u9 img:hover,
+.wrapper-3t9DeA img:hover,
+.avatar-VxgULZ img:hover {
+    box-shadow: 0 0 18px rgba(115, 233, 255, 0.7) !important;
+}
+
+/* Profile hologram card */
+.userProfileModalInner-3FHlC5,
+.profilePanel-2PWEok {
+    transition: 0.4s ease;
+    border-radius: 12px;
+    box-shadow: 0 0 16px rgba(115,233,255,0.25);
+    backdrop-filter: blur(14px) saturate(160%);
+}
+.userProfileModalInner-3FHlC5:hover,
+.profilePanel-2PWEok:hover {
+    box-shadow: 0 0 22px rgba(179,0,255,0.55), 0 0 12px rgba(115,233,255,0.7);
+    transform: translateY(-4px);
+}
+
+/* --------------------------------------------------
+   TYPING BAR SHIMMER
+---------------------------------------------------*/
+@keyframes senShine {
+    0%   { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+.channelTextArea-1VQBuB {
+    background: linear-gradient(90deg,
+        rgba(179, 0, 255, 0.25),
+        rgba(115, 233, 255, 0.45),
+        rgba(179, 0, 255, 0.25)
+    );
+    background-size: 300px 100%;
+    animation: senShine 8s linear infinite;
+    border-radius: 10px;
+}
+
+/* --------------------------------------------------
+   COSMIC PETAL FALL
+---------------------------------------------------*/
+@keyframes senPetalFall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+    15% { opacity: 0.7; }
+    100% { transform: translateY(120vh) rotate(180deg); opacity: 0; }
+}
+body::before, body::after, #app-mount::before {
+    content: "";
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    background-image: var(--petal-img);
+    background-size: contain;
+    opacity: 0.6;
+    pointer-events: none;
+    animation: senPetalFall 14s linear infinite;
+    z-index: 2;
+}
+body::before { animation-delay: 2s; }
+body::after { animation-delay: 4s; }
+#app-mount::before { animation-delay: 8s; }
+
+/* Toggle petals */
+:root[style*="--toggle-falling-petals: 0"] body::before,
+:root[style*="--toggle-falling-petals: 0"] body::after,
+:root[style*="--toggle-falling-petals: 0"] #app-mount::before {
+    display: none !important;
+}
+
+/* --------------------------------------------------
+   CURSOR
+---------------------------------------------------*/
+body {
+    cursor: url("https://cdn.discordapp.com/emojis/899078125034098728.png?size=36") 6 6, auto !important;
+}
+
+/* --------------------------------------------------
+   DM GALAXY BACKGROUND
+---------------------------------------------------*/
+.panels-3wFtMD,
+.privateChannels-1nO12g {
+    background: radial-gradient(circle at top left,
+        rgba(179,0,255,0.25),
+        rgba(20,20,30,0.5));
+    backdrop-filter: blur(10px) saturate(150%);
+}
+.panels-3wFtMD::before,
+.privateChannels-1nO12g::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--dm-bg);
+    background-size: 200%;
+    opacity: 0.15;
+    animation: dmNebula 60s linear infinite;
+}
+@keyframes dmNebula {
+    0% { transform: translateX(-10%) translateY(-5%); opacity: 0.18; }
+    50% { transform: translateX(8%) translateY(6%); opacity: 0.25; }
+    100% { transform: translateX(-10%) translateY(-5%); opacity: 0.18; }
+}
+
+/* --------------------------------------------------
+   MOTION + SIDEBAR ORB
+---------------------------------------------------*/
+.listItem-3SmSlK:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px rgba(115,233,255,0.8));
+}
+.container__91a9d,
+.wrapper-2ea32 .link__2ea32,
+.channel-972a0 {
+    transition: margin-left 0.25s ease;
+}
+.container__91a9d:hover,
+.channel-972a0:hover,
+.wrapper-2ea32:hover .link__2ea32 {
+    margin-left: 10px;
+}
+
+/* --------------------------------------------------
+   MENTION + SPEAKING GLOW
+---------------------------------------------------*/
+.mentioned-xhSam7 {
+    border-left: 3px solid var(--sen-accent-primary);
+    box-shadow: 0 0 12px rgba(179,0,255,0.4);
+}
+.voiceUser-1wS7LQ.speaking-7IAQCr {
+    filter: drop-shadow(0 0 12px rgba(115,233,255,0.9));
+}
+
+/* Typing indicator */
+.typing-2J1mOL {
+    filter: drop-shadow(0 0 6px rgba(115,233,255,0.9));
+    animation: typeGlow 2s infinite ease-in-out;
+}
+@keyframes typeGlow {
+    0%,100% {opacity: 0.6;}
+    50%     {opacity: 1;}
+}
+
+/* --------------------------------------------------
+   SCROLLBAR GLOW
+---------------------------------------------------*/
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--sen-accent-primary), var(--sen-accent-secondary));
+    animation: scrollGlow 4s linear infinite;
+}
+@keyframes scrollGlow {
+    0% {filter: brightness(0.8);}
+    100% {filter: brightness(1.3);}
+}
+
+/* --------------------------------------------------
+   MESSAGE SEND PULSE
+---------------------------------------------------*/
+.message-2qnXI6 {
+    animation: messageFade 2s ease;
+}
+@keyframes messageFade {
+    0% {box-shadow: 0 0 10px rgba(115,233,255,0.5);}
+    100% {box-shadow: none;}
+}
+
+/* --------------------------------------------------
+   WATERMARK BACKGROUND LAYER
+---------------------------------------------------*/
+#app-mount::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("Put you url here for your picture");
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    opacity: 0.18;
+    z-index: 0;
+    filter: invert(var(--sen-water-invert))
+            sepia(var(--sen-water-sepia))
+            saturate(var(--sen-water-sat))
+            hue-rotate(var(--sen-water-hue))
+            brightness(var(--sen-water-bright))
+            contrast(var(--sen-water-contrast));
+}
+:root[style*="--toggle-watermark: 0"] #app-mount::before {
+    display: none !important;
+}
+
+/* --------------------------------------------------
+   HOME ICON BRANDING SYSTEM
+---------------------------------------------------*/
+:root[style*="--toggle-custom-home-button: 1"]
+.wrapper-6e9f8[data-list-item-id="guildsnav___home"] > .childWrapper__6e9f8 > svg {
+    display: none !important;
+}
+:root[style*="--toggle-custom-home-button: 1"]
+.wrapper-6e9f8[data-list-item-id="guildsnav___home"] > .childWrapper__6e9f8 {
+    background-image: var(--sen-home-icon);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.4s ease, filter 0.3s ease;
+    filter: hue-rotate(var(--sen-water-hue)) saturate(160%);
+}
+:root[style*="--toggle-custom-home-button: 1"]
+.wrapper-6e9f8[data-list-item-id="guildsnav___home"]:hover > .childWrapper__6e9f8 {
+    transform: scale(1.15) rotate(320deg);
+    filter: hue-rotate(var(--sen-water-hue)) saturate(260%);
+}
+
+/* --------------------------------------------------
+   ANIMATED SPLASH LOADER BRANDING
+---------------------------------------------------*/
+@keyframes senSplashSpin {
+    0% { transform: rotate(0deg) scale(0.8); opacity: 0.2; }
+    50% { transform: rotate(180deg) scale(1); opacity: 1; }
+    100% { transform: rotate(360deg) scale(0.8); opacity: 0.2; }
+}
+.splashLoading-1sT9L2::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 120px;
+    height: 120px;
+    background-image: var(--sen-home-icon);
+    background-size: contain;
+    animation: senSplashSpin 4s linear infinite;
+    transform-origin: center;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 12px var(--sen-accent-secondary));
+}
+
+/* --------------------------------------------------
+   WATERMARK TEXT
+---------------------------------------------------*/
+#app-mount::after {
+    content: "✦ Made By Senkozy ✦";
+    position: fixed;
+    bottom: 10px;
+    right: 14px;
+    font-size: 11px;
+    opacity: 0.5;
+    color: var(--sen-accent-secondary);
+    pointer-events: none;
+    z-index: 99;
+}
