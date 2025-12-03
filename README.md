@@ -22,4 +22,4 @@ Enable theme in settings
 
 
 
-I'm sorry is something is abit broken this is my first theme type thing.
+I'm sorry if something is abit broken this is my first theme type thing.
