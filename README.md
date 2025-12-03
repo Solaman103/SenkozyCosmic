@@ -21,9 +21,5 @@ Enable theme in settings
 
 
 
-🎨 Updating
 
-
-
-Coming soon. . .
-
+I'm sorry is something is abit broken this is my first theme type thing.
